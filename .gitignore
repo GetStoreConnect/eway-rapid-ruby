@@ -19,7 +19,6 @@ coverage
 /vendor/bundle
 /lib/bundler/man/
 
-/Gemfile.lock
 .idea
 .ruby-version
 .ruby-gemset
