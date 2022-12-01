@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module EwayRapid
 
   # This class abstracts the Rapid API 3.1 functions so that it can be consumed
@@ -268,7 +270,7 @@ module EwayRapid
       end
       begin
         url = @web_url + Constants::DIRECT_CUSTOMER_SEARCH_METHOD + Constants::JSON_SUFFIX
-        url = URI.encode(url)
+        url = Addressable::URI.encode(url)
 
         request = Message::CustomerProcess::QueryCustomerMsgProcess.create_request(token_customer_id.to_s)
         response = Message::CustomerProcess::QueryCustomerMsgProcess.send_request(url, @api_key, @password, @version, request)
@@ -341,7 +343,7 @@ module EwayRapid
         else
           url = @web_url + request_path + '/' + request
         end
-        url = URI.encode(url)
+        url = Addressable::URI.encode(url)
 
         response = Message::TransactionProcess::TransQueryMsgProcess.process_post_msg(url, @api_key, @password, @version)
         Message::TransactionProcess::TransQueryMsgProcess.make_result(response)
